@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SiteASP.Models.Category>
+
+@{
+    Layout = null;
+}
+
+<ul class="menu_ul">
+    @foreach (SiteASP.Models.Category item in Model)
+    {
+        <li class="menu_li">
+            @Html.ActionLink(item.CategoryName, "Articles", "Home", new { id = item.Id }, new { @class = "menu_a" })
+        </li>
+    }
+</ul>

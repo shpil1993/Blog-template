@@ -1,0 +1,22 @@
+﻿@model SiteASP.Models.Comment
+
+@{
+    ViewBag.Title = "Add Comment";
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddComment", "Comment", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    <div class="commenttool">
+        <input type="hidden" value="@Model.ArticleId" name="ArticleId" />
+        <input type="hidden" value="@Model.Article" name="Article" />
+        <input class="smallinput" required type="text" placeholder="Имя" name="CommentatorName" />
+        <input class="smallinput" type="email" placeholder="Email" name="Email" />
+        <br />
+        <br />
+        <textarea class="commenttext" required name="CommentText"></textarea>
+        <input type="submit" value="Подтвердить" class="acceptbtn" />
+        <div class="clear"></div>
+    </div>
+}

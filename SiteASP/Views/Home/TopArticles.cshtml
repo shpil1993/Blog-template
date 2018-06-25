@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SiteASP.Models.Article>
+
+@{
+    Layout = null;
+    int i = 0;
+    string div = "con";
+    string iTag = "i_tag";
+}
+
+@foreach (SiteASP.Models.Article item in Model)
+{
+    i = i + 1;
+    div += i.ToString();
+    iTag += i.ToString();
+    <div class="article">
+        <h3>
+            <a id="@i" class="drop_arrow"><i id="@iTag" class="arrow right"></i></a>
+            <a href="@Url.Action("Article", "Home", new { id = item.Id })" class="hyperlink" style="float:right;">@item.ArticleName</a>
+        </h3>
+        <div id="@div" hidden="hidden">
+            <hr />
+            <div class="clear"></div>
+            <img src="@item.ArticleImage" />
+            <p>
+                @if (@item.ArticleText.Length >= 200)
+                {
+                    @item.ArticleText.Remove(200);
+                    <span> ...</span>
+                }
+                else
+                {
+                    @item.ArticleText;
+                }
+            </p>
+        </div>
+        <div class="clear"></div>
+    </div>
+    div = "con";
+    iTag = "i_tag";
+}

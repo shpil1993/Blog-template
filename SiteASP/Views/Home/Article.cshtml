@@ -1,0 +1,21 @@
+﻿@model IEnumerable<SiteASP.Models.Article>
+
+@{
+    ViewBag.Title = "Article";
+}
+
+@foreach (var item in Model)
+{
+    <div class="articleMain">
+        <img src="@item.ArticleImage" />
+        <h1>@item.ArticleName</h1>
+        <p>
+            @item.ArticleText
+        </p>
+        <div class="clear"></div>
+    </div>
+    <h2>Комментарии</h2>
+    @Html.Action("Comments", "Comment", new { id = item.Id })
+    <h2>Оставить комментарий</h2>
+    @Html.Action("AddComment", "Comment", new { id = item.Id, article = item })
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SiteASP.Models.Comment>
+
+@{
+    Layout = null;
+    int i = 10;
+    string div = "con";
+    string iTag = "i_tag";
+}
+
+@foreach (SiteASP.Models.Comment item in Model)
+{
+    i = i + 1;
+    div += i.ToString();
+    iTag += i.ToString();
+    <div class="comment">
+        <h3>
+            <a id="@i" class="drop_arrow"><i id="@iTag" class="arrow right"></i></a>
+            <a href="@Url.Action("Article", "Home", new { id = item.ArticleId })" class="hyperlink" style="float:right;">@item.CommentatorName</a>
+        </h3>
+        <div id="@div" hidden="hidden">
+            <hr />
+            <img src="~/Content/Image/Article.png" />
+            <p>
+                @if (@item.CommentText.Length >= 30)
+                {
+                    @item.CommentText.Remove(30);
+                    <span> ...</span>
+                }
+                else
+                {
+                    @item.CommentText;
+                }
+            </p>
+            <div class="clear"></div>
+        </div>
+    </div>
+    div = "con";
+    iTag = "i_tag";
+}

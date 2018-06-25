@@ -1,0 +1,35 @@
+﻿@model SiteASP.Models.Paginator.IndexViewModel
+@using SiteASP.Helpers
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@foreach (SiteASP.Models.Article item in Model.Articles)
+{
+    <div class="articleMain">
+        <img src="@item.ArticleImage" />
+        <h3><a href="@Url.Action("Article", "Home", new { id = item.Id })" class="hyperlink">@item.ArticleName</a></h3>
+        <p>
+            @if (@item.ArticleText.Length >= 500)
+            {
+                @item.ArticleText.Remove(500);
+                <span> ...</span>
+            }
+            else
+            {
+                @item.ArticleText;
+            }
+        </p>
+        <div class="clear"></div>
+    </div>
+}
+@if (Model.PageInfo.TotalItems >= 5)
+{
+    <div class="page_item_container">
+        @Html.PageLink(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+    </div>
+}
+<div class="clear"></div>

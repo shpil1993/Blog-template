@@ -1,0 +1,15 @@
+﻿@model IEnumerable<SiteASP.Models.Comment>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="comment">
+            <img src="~/Content/Image/Article.png" />
+            <h3>@item.CommentatorName</h3>
+            <p>@item.CommentText</p>
+            <div class="clear"></div>
+        </div>
+}
