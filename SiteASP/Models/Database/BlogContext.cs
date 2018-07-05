@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SiteASP.Models
 {
-    public class BlogContext : IdentityDbContext
+    public class BlogContext : DbContext
     {
         public BlogContext() : base()
         {
